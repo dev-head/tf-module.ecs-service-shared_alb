@@ -1,0 +1,25 @@
+[
+  {
+    "name":               "${task_name}",
+    "hostname":           "${task_name}",
+    "image":              "${container_image}",
+    "essential":          true,
+    "cpu":                10,
+    "memory":             256,
+    "memoryReservation":  32,
+    "portMappings":       [{"containerPort": ${container_port}, "protocol": "tcp"}],
+
+    "environment": [
+      { "name": "APP_ENV", "value": "${Environment}" }
+    ],
+
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-region": "${aws_region}",
+        "awslogs-group":  "${log_group_name}"
+      }
+    }
+  }
+
+]
